@@ -1,0 +1,31 @@
+#Aliases apps
+alias stt='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+
+#Aliases basic commands
+alias ls='ls -GFh'
+alias ll='ls -las'
+
+#Aliases paths
+alias cdthp='cd Documents/Projets/Code/thp/'
+alias githubio='cd Documents/Projets/Code/felhix.github.io/'
+
+#Aliases Git
+alias gc='git commit -m'
+alias ga='git add .'
+alias gs='git status'
+alias gb='git branch'
+alias gp='git push'
+alias gm='git merge'
+
+#Aliases Rails
+alias rc='rails console'
+alias rs='rails server'
+alias rt='rails test'
+
+#Aliases Python
+alias python='python3'
+alias mapit='python ~/Documents/Projets/Code/python/AutomateBoringStuff/mapit/mapit.py'
+
+#Aliases misc
+alias speedtest="wget -O /dev/null http://speed.transip.nl/100mb.bin"
+
