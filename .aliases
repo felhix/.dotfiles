@@ -8,6 +8,7 @@ alias ll='ls -las'
 #Aliases paths
 alias cdthp='cd Documents/Projets/Code/thp/'
 alias githubio='cd Documents/Projets/Code/felhix.github.io/'
+alias dotfiles='stt ~/Documents/Projets/Code/dotfiles/'
 
 #Aliases Git
 alias gc='git commit -m'
