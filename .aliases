@@ -22,6 +22,7 @@ alias gm='git merge'
 alias rc='rails console'
 alias rs='rails server'
 alias rt='rails test'
+alias hrrc='heroku run rails console'
 
 #Aliases Python
 alias python='python3'
