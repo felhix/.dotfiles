@@ -23,6 +23,7 @@ alias rc='rails console'
 alias rs='rails server'
 alias rt='rails test'
 alias hrrc='heroku run rails console'
+alias bi='bundle install'
 
 #Aliases Python
 alias python='python3'
