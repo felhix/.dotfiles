@@ -1,5 +1,6 @@
 #Aliases apps
-alias stt='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+alias s='subl .'
+alias stt='subl'
 
 #Aliases basic commands
 alias ls='ls -GFh'
@@ -8,7 +9,11 @@ alias ll='ls -las'
 #Aliases paths
 alias cdthp='cd Documents/Projets/Code/thp/'
 alias githubio='cd Documents/Projets/Code/felhix.github.io/'
-alias dotfiles='stt ~/Documents/Projets/Code/dotfiles/'
+alias dotfiles='subl /home/felix/Documents/Code/dotfiles'
+
+#Aliases disabling middleclick button
+alias xinput-list="xinput list | grep pointer"
+alias xinput-middle-off="xinput set-button-map 11 1 1"
 
 #Aliases Git
 alias gc='git commit -m'
@@ -22,8 +27,14 @@ alias gm='git merge'
 alias rc='rails console'
 alias rs='rails server'
 alias rt='rails test'
+alias rmigrate="rails db:migrate"
 alias hrrc='heroku run rails console'
 alias bi='bundle install'
+
+#Aliases docker
+alias dockerrails-server='docker-compose up'
+alias dockerrails-console='docker-compose run web bash'
+alias dockerrails-test='docker-compose run -e RAILS_ENV=test web rspec'
 
 #Aliases Python
 alias python='python3'
