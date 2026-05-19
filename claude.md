@@ -10,3 +10,4 @@
 - Convention over configuration — follow established patterns
 - No unnecessary comments in code
 - No trailing summaries after completing a task
+- When doing something I might not be familiar with (SSH keys, git internals, networking, etc.), add a short plain-English explanation of what's happening and why — teach while doing
