@@ -40,7 +40,19 @@ git clone git@github.com:felhix/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles && ./install.sh
 ```
 
-### 5. macOS only — persist SSH key passphrase
+### 5. Install a Nerd Font
+
+Required for icons in `eza`. Using **0xProto Nerd Font** — change to taste from [nerdfonts.com](https://www.nerdfonts.com).
+
+**macOS (iTerm2):**
+```sh
+brew install --cask font-0xproto-nerd-font
+```
+Then iTerm2 → Preferences → Profiles → Text → Font → `0xProto Nerd Font`.
+
+**Linux:** download from nerdfonts.com, extract to `~/.local/share/fonts/`, run `fc-cache -fv`, set in terminal preferences.
+
+### 6. macOS only — persist SSH key passphrase
 ```sh
 ssh-add --apple-use-keychain ~/.ssh/id_rsa
 ```
