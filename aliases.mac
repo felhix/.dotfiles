@@ -1,7 +1,5 @@
 export PATH="/opt/homebrew/bin:$PATH"
 
-alias ls='ls -GFh'
-
 alias brewup='brew update && brew upgrade && brew cleanup'
 
 # mdfind is macOS Spotlight search from the terminal — faster than find for indexed files

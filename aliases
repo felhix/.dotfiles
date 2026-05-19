@@ -1,5 +1,8 @@
-# Navigation
-alias ll='ls -lah'
+# Navigation — eza (pretty ls) + bat (pretty cat)
+alias ls='eza --icons'
+alias ll='eza -lah --icons --git'
+alias lt='eza --tree --icons'
+alias cat='bat'
 alias dotfiles='cd ~/.dotfiles'
 
 # Git
