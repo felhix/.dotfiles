@@ -1,6 +1,13 @@
+export PATH="/opt/homebrew/bin:$PATH"
+
 alias ls='ls -GFh'
 
 alias brewup='brew update && brew upgrade && brew cleanup'
+
+# mdfind is macOS Spotlight search from the terminal — faster than find for indexed files
+alias locate='mdfind'
+
+alias code='open -a "Visual Studio Code"'
 
 alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'
 alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder'
