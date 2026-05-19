@@ -1,0 +1,6 @@
+alias ls='ls -GFh'
+
+alias brewup='brew update && brew upgrade && brew cleanup'
+
+alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'
+alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder'

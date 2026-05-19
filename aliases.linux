@@ -1,0 +1,6 @@
+alias ls='ls -Fh --color=auto'
+alias open='xdg-open'
+
+# Disable middle click (xinput device ID may vary per machine — override in ~/.zshrc.local)
+alias xinput-list="xinput list | grep pointer"
+alias xinput-middle-off="xinput set-button-map 13 1 1"

@@ -1,0 +1,22 @@
+# Navigation
+alias ll='ls -lah'
+alias dotfiles='cd ~/.dotfiles'
+
+# Git
+alias git='LANG=en_US git'
+alias ga='git add .'
+alias gcm='git commit -m'
+alias gs='git status'
+alias gb='git branch'
+alias gp='git push'
+alias gm='git merge'
+alias gls="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+
+# Docker
+alias dc='docker-compose'
+alias dcu='docker-compose up'
+alias dcd='docker-compose down'
+
+# Python
+alias python='python3'
+alias pip='pip3'
