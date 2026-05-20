@@ -5,6 +5,7 @@
 - `aliases` — shared aliases (git, docker, python, eza, bat)
 - `aliases.mac` / `aliases.linux` — OS-specific
 - `functions` — shell utilities (`fs`, `mkcdir`)
+- `gitconfig` — git config with delta wired in as diff viewer
 - `claude.md` — shared Claude Code global config
 
 ## Install on a new machine
@@ -26,12 +27,13 @@ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-~/.oh-my-zs
 
 **Linux (Ubuntu):**
 ```sh
-sudo apt install eza bat fzf
+sudo apt install eza bat fzf btop tldr
+# delta: download .deb from https://github.com/dandavison/delta/releases
 ```
 
 **macOS:**
 ```sh
-brew install eza bat fzf
+brew install eza bat fzf btop tldr git-delta
 ```
 
 ### 4. Clone and install dotfiles
@@ -52,7 +54,15 @@ Then iTerm2 → Preferences → Profiles → Text → Font → `0xProto Nerd Fon
 
 **Linux:** download from nerdfonts.com, extract to `~/.local/share/fonts/`, run `fc-cache -fv`, set in terminal preferences.
 
-### 6. macOS only — persist SSH key passphrase
+### 6. Set up personal git config
+`~/.gitconfig.local` is not tracked by git — put your name and email there:
+```ini
+[user]
+	name = Your Name
+	email = you@example.com
+```
+
+### 7. macOS only — persist SSH key passphrase
 ```sh
 ssh-add --apple-use-keychain ~/.ssh/id_rsa
 ```
