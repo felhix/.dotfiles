@@ -3,7 +3,6 @@ alias ls='eza --icons'
 alias ll='eza -lah --icons --git'
 alias lt='eza --tree --icons'
 alias cat='bat'
-alias dotfiles='cd ~/.dotfiles'
 
 # Git
 alias git='LANG=en_US git'
