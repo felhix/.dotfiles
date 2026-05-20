@@ -20,6 +20,17 @@ link() {
 echo "Installing dotfiles..."
 
 link zshrc .zshrc
+
+# Migrate personal git identity before symlinking shared gitconfig
+if [ ! -f "$HOME/.gitconfig.local" ] && [ -f "$HOME/.gitconfig" ]; then
+  echo "  migrating git identity to ~/.gitconfig.local..."
+  for key in user.name user.email user.signingkey commit.gpgsign; do
+    value=$(git config --file "$HOME/.gitconfig" "$key" 2>/dev/null)
+    [ -n "$value" ] && git config --file "$HOME/.gitconfig.local" "$key" "$value"
+  done
+  echo "  created: ~/.gitconfig.local"
+fi
+
 link gitconfig .gitconfig
 
 mkdir -p "$HOME/.claude"
