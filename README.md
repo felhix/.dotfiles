@@ -14,6 +14,28 @@ The decisions are opinionated on purpose. A blank slate takes days to tune. This
 
 ## 2. 📦 What's here
 
+```
+.dotfiles/
+├── zsh/
+│   ├── zshrc
+│   ├── aliases          # shared across OS
+│   ├── aliases.mac
+│   ├── aliases.linux
+│   └── functions
+├── git/
+│   └── gitconfig
+├── starship/
+│   └── starship.toml
+├── claude/
+│   └── CLAUDE.md
+├── bin/
+│   └── dotfiles-health
+├── assets/
+│   └── example.png
+├── Brewfile
+└── install.sh
+```
+
 | Path | Tool | Why |
 |------|------|-----|
 | `starship/` | [Starship](https://starship.rs) | Cross-shell prompt written in Rust — shows git branch, status, and context instantly, without slowing the shell down |
