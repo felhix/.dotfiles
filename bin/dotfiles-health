@@ -45,6 +45,7 @@ echo "symlinks"
 check_symlink ".zshrc"        "$HOME/.zshrc"            "$DOTFILES/zsh/zshrc"
 check_symlink ".gitconfig"    "$HOME/.gitconfig"         "$DOTFILES/git/gitconfig"
 check_symlink "CLAUDE.md"     "$HOME/.claude/CLAUDE.md"  "$DOTFILES/claude/CLAUDE.md"
+check_symlink "starship.toml" "$HOME/.config/starship.toml" "$DOTFILES/starship/starship.toml"
 
 echo ""
 echo "oh-my-zsh"
@@ -59,7 +60,7 @@ check_dir "zsh-completions"        "$ZSH_CUSTOM/plugins/zsh-completions"
 
 echo ""
 echo "tools"
-for cmd in git zsh fzf eza bat delta gh btop tldr; do
+for cmd in git zsh fzf eza bat delta gh btop tldr starship; do
   check_cmd "$cmd"
 done
 

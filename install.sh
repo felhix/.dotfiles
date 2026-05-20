@@ -66,7 +66,7 @@ install_linux() {
   echo ""
   echo "→ CLI tools"
   local missing=()
-  for tool in git zsh fzf eza bat btop gh; do
+  for tool in git zsh fzf eza bat btop gh starship; do
     command -v "$tool" &>/dev/null || missing+=("$tool")
   done
 
@@ -111,6 +111,7 @@ install_symlinks() {
   safe_symlink "$DOTFILES/zsh/zshrc"      "$HOME/.zshrc"
   safe_symlink "$DOTFILES/git/gitconfig"  "$HOME/.gitconfig"
   safe_symlink "$DOTFILES/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+  safe_symlink "$DOTFILES/starship/starship.toml" "$HOME/.config/starship.toml"
 }
 
 migrate_git_identity() {

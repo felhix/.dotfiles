@@ -1,0 +1,66 @@
+add_newline = true
+
+format = """
+$directory$git_branch$git_status$git_metrics \
+$ruby$python$nodejs$docker_context\
+$cmd_duration
+$character"""
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+format = "[$symbol$branch](bold purple) "
+symbol = " "
+
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
+style = "yellow"
+conflicted = "="
+ahead = "⇡${count}"
+behind = "⇣${count}"
+untracked = "?"
+modified = "!"
+staged = "+"
+deleted = "✘"
+
+[git_metrics]
+added_style = "green"
+deleted_style = "red"
+format = '([+$added]($added_style) )([-$deleted]($deleted_style) )'
+disabled = false
+
+[cmd_duration]
+min_time = 2_000
+format = "[took $duration](dimmed white) "
+
+[ruby]
+format = "[$symbol$version]($style) "
+symbol = " "
+style = "red"
+detect_files = ["Gemfile", ".ruby-version", "*.gemspec"]
+
+[python]
+format = "[$symbol$version]($style) "
+symbol = " "
+style = "yellow"
+detect_files = ["requirements.txt", "pyproject.toml", ".python-version", "Pipfile"]
+
+[nodejs]
+format = "[$symbol$version]($style) "
+symbol = " "
+style = "green"
+detect_files = ["package.json", ".nvmrc", ".node-version"]
+detect_folders = ["node_modules"]
+
+[docker_context]
+format = "[$symbol$context]($style) "
+symbol = " "
+style = "blue"
+only_with_files = true
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]

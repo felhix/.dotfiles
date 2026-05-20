@@ -6,6 +6,7 @@
 zsh/          zshrc, aliases (shared + OS-specific), functions
 git/          gitconfig (delta as diff viewer)
 claude/       CLAUDE.md — shared Claude Code global config
+starship/     starship.toml — prompt config
 bin/          dotfiles-health — verify your setup
 Brewfile      macOS dependencies (brew bundle)
 install.sh    bootstrap a new machine end to end
