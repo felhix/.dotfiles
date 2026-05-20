@@ -12,7 +12,25 @@ An opinionated terminal setup: beautiful output, zero friction across machines, 
 
 The decisions are opinionated on purpose. A blank slate takes days to tune. This takes one `./install.sh`.
 
-## 2. 📦 What's here
+## 2. ✨ The beautiful magic
+
+The tools below are what make the terminal actually pleasant to be in — not just functional, but something you enjoy looking at.
+
+**Color scheme — Catppuccin or Dracula.** The specific theme depends on your terminal emulator and isn't tracked here, but the palette matters: soft pastels (Catppuccin) or rich contrast (Dracula) make syntax highlighting, diffs, and prompts feel cohesive instead of random. Pick one and apply it everywhere.
+
+**Nerd Font.** A font patched with thousands of icons — folder glyphs, git symbols, language logos. Without it, `eza` and Starship render broken squares. With it, the terminal starts to feel like a proper UI. 0xProto Nerd Font is the one I use.
+
+**[Starship](https://starship.rs).** A cross-shell prompt that shows git branch, dirty state, and context in milliseconds. Written in Rust — it's fast enough that you never notice it. Configured in `starship/starship.toml`.
+
+**[eza](https://eza.rocks).** A modern replacement for `ls` — icons, colors, git status per file, and a tree view. Makes directory browsing actually readable. Aliased to `ls`, `ll`, and `lt`.
+
+**[bat](https://github.com/sharkdp/bat).** A `cat` replacement with syntax highlighting and line numbers. Aliased to `cat` — you get it for free every time you print a file.
+
+**[delta](https://dandavison.github.io/delta/).** Replaces the default git diff pager with side-by-side view, syntax highlighting, and line numbers. Makes reviewing changes actually comfortable.
+
+**[fzf](https://github.com/junegunn/fzf) + fzf-tab.** Fuzzy finder wired into the shell. `fzf-tab` replaces standard tab completion with an interactive visual selector — you see all options at once and filter by typing. One of those things you can't go back from.
+
+## 3. 📦 What's here
 
 ```
 .dotfiles/
@@ -48,9 +66,9 @@ The decisions are opinionated on purpose. A blank slate takes days to tune. This
 
 Key aliases: `ls` → `eza --icons`, `cat` → `bat`, `ll` → `eza -lah --icons --git`, `gls` → decorated git log graph.
 
-## 3. 🚀 Install it
+## 4. 🚀 Install it
 
-### 3.1. 🔧 Manual steps (not automated)
+### 4.1. 🔧 Manual steps (not automated)
 
 **Git identity on a fresh machine** — if no prior gitconfig existed, set your identity:
 ```sh
@@ -64,7 +82,7 @@ git config --file ~/.gitconfig.local user.email "you@example.com"
 - Run `fc-cache -fv`
 - Set the font in your terminal preferences
 
-### 3.2. ⚡ Automated
+### 4.2. ⚡ Automated
 
 ```sh
 git clone git@github.com:felhix/.dotfiles.git ~/.dotfiles
@@ -81,7 +99,7 @@ Verify everything is set up correctly:
 bin/dotfiles-health
 ```
 
-### 3.3. 💻 Machine-specific config
+### 4.3. 💻 Machine-specific config
 
 > [!TIP]
 > Put anything machine-specific in `~/.zshrc.local` — sourced automatically, not tracked by git.
