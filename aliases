@@ -23,3 +23,9 @@ alias dcd='docker-compose down'
 # Python
 alias python='python3'
 alias pip='pip3'
+
+# Misc
+alias reload='source ~/.zshrc'
+alias myip='curl ifconfig.me'
+alias weather='curl wttr.in'
+alias speedtest="wget -O /dev/null http://speed.transip.nl/100mb.bin"
