@@ -11,6 +11,7 @@
 - No unnecessary comments in code
 - No trailing summaries after completing a task
 - When doing something that touches a topic from the list below, add a short plain-English explanation of what's happening and why — teach while doing
+- When writing documentation in markdown, number sections: `## 1. Title`, `## 2. Title`, and subsections as `### 2.1. Subtitle`, `### 2.2. Subtitle`
 
 ## Topics to explain as we go
 - SSH keys and authentication
