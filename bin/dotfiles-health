@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+
+DOTFILES="$HOME/.dotfiles"
+ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+errors=0
+
+ok()   { printf "  \033[32m✓\033[0m %s\n" "$1"; }
+warn() { printf "  \033[33m⚠\033[0m %s\n" "$1"; errors=$((errors + 1)); }
+fail() { printf "  \033[31m✗\033[0m %s\n" "$1"; errors=$((errors + 1)); }
+
+check_symlink() {
+  local label="$1" dest="$2" expected_src="$3"
+  if [[ -L "$dest" && "$(readlink "$dest")" == "$expected_src" ]]; then
+    ok "$label"
+  elif [[ -L "$dest" ]]; then
+    warn "$label → wrong target: $(readlink "$dest")"
+  elif [[ -e "$dest" ]]; then
+    warn "$label → not a symlink (regular file exists)"
+  else
+    fail "$label → missing"
+  fi
+}
+
+check_cmd() {
+  local cmd="$1"
+  command -v "$cmd" &>/dev/null && ok "$cmd" || fail "$cmd not in PATH"
+}
+
+check_dir() {
+  local label="$1" path="$2"
+  [[ -d "$path" ]] && ok "$label" || fail "$label not found: $path"
+}
+
+check_git_config() {
+  local key="$1"
+  local value
+  value=$(git config "$key" 2>/dev/null || true)
+  [[ -n "$value" ]] && ok "git $key = $value" || warn "git $key not set (add to ~/.gitconfig.local)"
+}
+
+echo "dotfiles health check"
+echo ""
+
+echo "symlinks"
+check_symlink ".zshrc"        "$HOME/.zshrc"            "$DOTFILES/zsh/zshrc"
+check_symlink ".gitconfig"    "$HOME/.gitconfig"         "$DOTFILES/git/gitconfig"
+check_symlink "CLAUDE.md"     "$HOME/.claude/CLAUDE.md"  "$DOTFILES/claude/CLAUDE.md"
+
+echo ""
+echo "oh-my-zsh"
+check_dir "oh-my-zsh" "$HOME/.oh-my-zsh"
+
+echo ""
+echo "zsh plugins"
+check_dir "zsh-autosuggestions"    "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+check_dir "zsh-syntax-highlighting" "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+check_dir "fzf-tab"                "$ZSH_CUSTOM/plugins/fzf-tab"
+check_dir "zsh-completions"        "$ZSH_CUSTOM/plugins/zsh-completions"
+
+echo ""
+echo "tools"
+for cmd in git zsh fzf eza bat delta gh btop tldr; do
+  check_cmd "$cmd"
+done
+
+echo ""
+echo "git config"
+check_git_config "user.name"
+check_git_config "user.email"
+
+echo ""
+if [[ $errors -eq 0 ]]; then
+  printf "\033[32mall checks passed\033[0m\n"
+else
+  printf "\033[31m%d issue(s) found\033[0m\n" "$errors"
+fi
+
+exit $errors

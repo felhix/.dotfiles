@@ -1,6 +1,9 @@
 [include]
 	path = ~/.gitconfig.local
 
+[gpg]
+	format = ssh
+
 [core]
 	pager = delta
 	editor = vim
