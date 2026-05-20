@@ -1,6 +1,6 @@
 # dotfiles
 
-![Terminal screenshot](example.png)
+![Terminal screenshot](assets/example.png)
 
 ![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux-blue) ![Shell](https://img.shields.io/badge/shell-zsh-green) ![Prompt](https://img.shields.io/badge/prompt-starship-DD0B78)
 
