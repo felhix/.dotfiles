@@ -16,7 +16,7 @@ truncate_to_repo = true
 
 [git_branch]
 format = "[$symbol$branch](bold purple) "
-symbol = " "
+symbol = " "
 
 [git_status]
 format = '([$all_status$ahead_behind]($style) )'
@@ -41,26 +41,26 @@ format = "[took $duration](dimmed white) "
 
 [ruby]
 format = "[$symbol$version]($style) "
-symbol = " "
+symbol = " "
 style = "red"
 detect_files = ["Gemfile", ".ruby-version", "*.gemspec"]
 
 [python]
 format = "[$symbol$version]($style) "
-symbol = " "
+symbol = " "
 style = "yellow"
 detect_files = ["requirements.txt", "pyproject.toml", ".python-version", "Pipfile"]
 
 [nodejs]
 format = "[$symbol$version]($style) "
-symbol = " "
+symbol = " "
 style = "green"
 detect_files = ["package.json", ".nvmrc", ".node-version"]
 detect_folders = ["node_modules"]
 
 [docker_context]
 format = "[$symbol$context]($style) "
-symbol = " "
+symbol = " "
 style = "blue"
 only_with_files = true
 detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
