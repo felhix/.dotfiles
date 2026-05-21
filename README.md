@@ -77,10 +77,13 @@ git config --file ~/.gitconfig.local user.email "you@example.com"
 ```
 
 **Linux Nerd Font** — required for icons in `eza`:
-- Download from [nerdfonts.com](https://www.nerdfonts.com) (0xProto Nerd Font recommended)
-- Extract to `~/.local/share/fonts/`
-- Run `fc-cache -fv`
-- Set the font in your terminal preferences
+```sh
+mkdir -p ~/.local/share/fonts \
+  && curl -fLo /tmp/0xProto.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/0xProto.zip \
+  && unzip -o /tmp/0xProto.zip -d ~/.local/share/fonts/ \
+  && fc-cache -fv
+```
+Then set **0xProto Nerd Font** in your terminal preferences.
 
 ### 4.2. ⚡ Automated
 

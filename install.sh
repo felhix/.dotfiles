@@ -65,22 +65,59 @@ install_macos() {
 install_linux() {
   echo ""
   echo "→ CLI tools"
-  local missing=()
-  for tool in git zsh fzf eza bat btop gh starship; do
-    command -v "$tool" &>/dev/null || missing+=("$tool")
-  done
 
-  if [[ ${#missing[@]} -gt 0 ]]; then
-    warn "missing tools: ${missing[*]}"
-    warn "run: sudo apt install ${missing[*]}"
+  # Install what's reliably available in apt
+  local apt_tools=()
+  for tool in git zsh fzf bat btop; do
+    command -v "$tool" &>/dev/null || apt_tools+=("$tool")
+  done
+  if [[ ${#apt_tools[@]} -gt 0 ]]; then
+    log "installing via apt: ${apt_tools[*]}"
+    run sudo apt-get install -y "${apt_tools[@]}"
+    success "apt tools installed"
   else
-    success "all CLI tools present"
+    success "apt tools already present"
   fi
 
+  # eza: in apt on Ubuntu 24.04+, not on older releases
+  if ! command -v eza &>/dev/null; then
+    log "installing eza..."
+    if $DRY_RUN; then
+      echo "  [DRY] sudo apt-get install -y eza"
+    elif sudo apt-get install -y eza 2>/dev/null; then
+      success "eza installed"
+    else
+      warn "eza not in apt — install manually: cargo install eza"
+    fi
+  else
+    success "eza already present"
+  fi
+
+  # starship: not in apt, install via official script
+  if ! command -v starship &>/dev/null; then
+    log "installing starship..."
+    if $DRY_RUN; then
+      echo "  [DRY] curl -sS https://starship.rs/install.sh | sh -s -- --yes"
+    else
+      curl -sS https://starship.rs/install.sh | sh -s -- --yes
+      success "starship installed"
+    fi
+  else
+    success "starship already present"
+  fi
+
+  # gh: needs GitHub's apt repo — too invasive to auto-configure
+  if ! command -v gh &>/dev/null; then
+    warn "gh not found — see: https://cli.github.com/manual/installation"
+  else
+    success "gh already present"
+  fi
+
+  # delta: binary release only
   if ! command -v delta &>/dev/null; then
     warn "delta not found — download from: https://github.com/dandavison/delta/releases"
   else
-    success "delta present"
+    success "delta already present"
   fi
 }
 
