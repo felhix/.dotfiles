@@ -31,5 +31,8 @@ else
   source ~/.dotfiles/zsh/aliases.linux
 fi
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 eval "$(starship init zsh)"
