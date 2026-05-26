@@ -13,6 +13,9 @@
 - When doing something that touches a topic from the list below, add a short plain-English explanation of what's happening and why — teach while doing
 - When writing documentation in markdown, number sections: `## 1. Title`, `## 2. Title`, and subsections as `### 2.1. Subtitle`, `### 2.2. Subtitle`
 
+## Python CLI scripts
+When writing or improving a Python CLI script, read `~/.claude/ui_spec.md` and apply those patterns (Rich panels, info tables, prompts, colour/emoji conventions).
+
 ## Topics to explain as we go
 - SSH keys and authentication
 - Git internals (rebase, reflog, remotes, etc.)
