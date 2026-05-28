@@ -62,9 +62,13 @@ console.rule(f"[dim] {i} / {total} [/dim]")
 
 ---
 
-## Info table
+## Tables
 
-Two-column label/value layout. Labels fixed-width, values wrap freely.
+Prefer `Table` over `console.print` for any multi-line structured output — Rich aligns columns for free.
+
+### Label/value (info block)
+
+Two-column layout. Labels fixed-width, values wrap freely.
 
 ```python
 dash = "[dim]—[/dim]"
@@ -86,6 +90,23 @@ Rules:
 - `width=12` fits all standard emoji labels without clipping
 - File paths: always `[dim]`
 
+### Numbered list (candidate picker)
+
+Index column with blue number in plain brackets, then data columns: primary bold, secondary cyan, tertiary dim.
+
+```python
+tbl = Table(show_header=False, box=None, padding=(0, 1))
+tbl.add_column(width=4, no_wrap=True)   # [1]
+tbl.add_column(style="bold")            # primary
+tbl.add_column(style="cyan")            # secondary
+tbl.add_column(style="dim")             # tertiary…
+
+for i, item in enumerate(items, 1):
+    tbl.add_row(f"[[blue]{i}[/blue]]", item.title, item.artist, item.extra)
+
+console.print(tbl)
+```
+
 ---
 
 ## Prompts
@@ -99,6 +120,9 @@ raw = Prompt.ask("📋 Name [dim](comma-separated)[/dim]", default="Foo, Bar")
 
 # Free input, no default (forces manual entry)
 raw = Prompt.ask("📋 Name", default=None)
+
+# Constrained choices
+choice = Prompt.ask("  Source", choices=["1", "2", "3"])
 ```
 
 ---
@@ -136,7 +160,7 @@ raw = Prompt.ask("📋 Name", default=None)
 | ✨ | Already OK / nothing to do |
 | 🎉 | Done |
 
-Add domain-specific emojis on top of these per script.
+Emojis act as visual type markers — at a glance they tell you what kind of thing you're looking at. The table above covers universal cases; add domain-specific ones freely. Trust the LLM to pick the right emoji for context — no need to enumerate every possible one.
 
 ---
 
@@ -152,6 +176,26 @@ console.print(f"  🟡 [yellow]{to_review}[/yellow] need your attention")
 
 ---
 
+## Command prompt (beets-style)
+
+For interactive resolution loops where the user picks from a numbered list or issues a command. Brackets are plain, letter is `bold yellow`, rest of the word is normal text.
+
+```python
+commands = (
+    "  [dim][[/dim][bold yellow]S[/bold yellow][dim]][/dim]kip,"
+    "  [dim][[/dim][bold yellow]M[/bold yellow][dim]][/dim]ark missing,"
+    "  [dim][[/dim][bold yellow]E[/bold yellow][dim]][/dim]nter search"
+)
+
+# With numbered options — default to first pick
+Prompt.ask(f"  Pick [bold cyan]number[/bold cyan],{commands}", default="1")
+
+# Without numbered options — no default
+Prompt.ask(commands.lstrip())
+```
+
+---
+
 ## Error handling boilerplate
 
 ```python
@@ -160,5 +204,13 @@ try:
     # ...
 except ImportError:
     print("Missing dependency: pip install rich")
+    sys.exit(1)
+```
+
+## Fatal error helper
+
+```python
+def fatal(msg: str) -> None:
+    console.print(f"\n  [red]❌ {msg}[/red]\n")
     sys.exit(1)
 ```
