@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls /tmp/tess_test/*)",
+      "Bash(ls /tmp/tales_pages/*)",
+      "Bash(tesseract:*)",
+      "Bash(/opt/homebrew/bin/pdftoppm:*)",
+      "Bash(cp /tmp/*)",
+      "Bash(mkdir /tmp/tales_pages)",
+      "Bash(mkdir /tmp/tess_test)",
+      "Bash(cd /tmp*)",
+      "Bash(for n in*)",
+      "Bash(bash /tmp/*)"
+    ]
+  },
+  "theme": "dark-ansi"
+}

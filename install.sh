@@ -147,7 +147,9 @@ install_symlinks() {
   echo "→ symlinks"
   safe_symlink "$DOTFILES/zsh/zshrc"      "$HOME/.zshrc"
   safe_symlink "$DOTFILES/git/gitconfig"  "$HOME/.gitconfig"
-  safe_symlink "$DOTFILES/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+  safe_symlink "$DOTFILES/claude/CLAUDE.md"    "$HOME/.claude/CLAUDE.md"
+  safe_symlink "$DOTFILES/claude/settings.json" "$HOME/.claude/settings.json"
+  safe_symlink "$DOTFILES/claude/ui_spec.md"    "$HOME/.claude/ui_spec.md"
   safe_symlink "$DOTFILES/starship/starship.toml" "$HOME/.config/starship.toml"
 }
 
