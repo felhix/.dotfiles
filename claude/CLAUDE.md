@@ -1,82 +1,49 @@
 # Global Claude Code config
 
-## About me
-- Working across macOS (MacBook Air) and Linux (Ubuntu desktop, Ubuntu ThinkPad home server)
-- Main languages: Ruby, Python, JavaScript
-- Stack: Docker, git, zsh + oh-my-zsh
+Coding discipline — think before coding, simplicity first, surgical changes, goal-driven
+execution — is not inline here. It lives in the `karpathy-guidelines` skill, installed from
+https://github.com/forrestchang/andrej-karpathy-skills and loaded on demand.
 
-## Preferences
-- Keep responses short and direct
+## 1. About me
+- macOS (MacBook Air M4) and Linux (Ubuntu 24.04 + KDE desktop, Ubuntu ThinkPad home server)
+- Main languages: Ruby, Python, JavaScript; some Rust
+- Stack: Docker, git, zsh + oh-my-zsh
+- Fluent on the command line — curl, jq, APIs and JSON don't need explaining
+- Code lives in `~/Documents/codes` (lowercase, plural)
+- `ls` is aliased to `eza`, so `ls -lt`-style flags break. Use `eza` flags or `command ls`
+
+## 2. How to respond
+- Short and direct. No filler, no trailing summaries
+- Don't hedge. Give me the actual recommendation, not a safe middle
+- English by default. French when I ask for it
 - Convention over configuration — follow established patterns
 - No unnecessary comments in code
-- No trailing summaries after completing a task
-- When doing something that touches a topic from the list below, add a short plain-English explanation of what's happening and why — teach while doing
-- When writing documentation in markdown, number sections: `## 1. Title`, `## 2. Title`, and subsections as `### 2.1. Subtitle`, `### 2.2. Subtitle`
+- When doing something that touches a topic from the "Topics to explain as we go" list below, add a short plain-English explanation of what's happening and why — teach while doing
+- When writing documentation in markdown, number sections: `## 1. Title`, and subsections as `### 1.1. Subtitle`. Not in Obsidian vaults — a plugin numbers those automatically
 
-## Python CLI scripts
-When writing or improving a Python CLI script, read `~/.claude/ui_spec.md` and apply those patterns (Rich panels, info tables, prompts, colour/emoji conventions).
+## 3. Accuracy
+- Don't state remembered facts, numbers or version details as if they're certain. Mark anything unverified as unverified, and check the source when one exists
+- Check the premise before answering. Don't assume a default context or regime
+- When you can't guarantee a generated file is correct, give me a step-by-step build guide instead, so I can catch errors as they happen
+- Engage honestly with second opinions I bring in from other AI tools — don't defer to them, don't dismiss them
+- When I correct something, update and don't repeat the error
 
-## Topics to explain as we go
+## 4. Decisions and research
+- Hard requirements first, then filter the options against them
+- Show the full option landscape before narrowing. Don't silently hand me one choice
+- Tables, tiers and shortlists, with honest per-option tradeoffs
+- Real caveats over endorsements
+
+## 5. Building
+- MVP first: simplest working version, then staged milestones, each one tested before moving on
+- Prefer the middle path in tooling — clean, auditable data plus manual overrides, rather than full automation or pure manual work
+
+## 6. Topics to explain as we go
 - SSH keys and authentication
 - Git internals (rebase, reflog, remotes, etc.)
 - Networking basics (DNS, ports, HTTP, SSL)
 - Linux system administration (permissions, services, cron, etc.)
 - Docker internals (volumes, networking, layers)
 
----
-
-## 1. Think Before Coding
-
-**Don't assume. Don't hide confusion. Surface tradeoffs.**
-
-Before implementing:
-- State your assumptions explicitly. If uncertain, ask.
-- If multiple interpretations exist, present them - don't pick silently.
-- If a simpler approach exists, say so. Push back when warranted.
-- If something is unclear, stop. Name what's confusing. Ask.
-
-## 2. Simplicity First
-
-**Minimum code that solves the problem. Nothing speculative.**
-
-- No features beyond what was asked.
-- No abstractions for single-use code.
-- No "flexibility" or "configurability" that wasn't requested.
-- No error handling for impossible scenarios.
-- If you write 200 lines and it could be 50, rewrite it.
-
-Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
-
-## 3. Surgical Changes
-
-**Touch only what you must. Clean up only your own mess.**
-
-When editing existing code:
-- Don't "improve" adjacent code, comments, or formatting.
-- Don't refactor things that aren't broken.
-- Match existing style, even if you'd do it differently.
-- If you notice unrelated dead code, mention it - don't delete it.
-
-When your changes create orphans:
-- Remove imports/variables/functions that YOUR changes made unused.
-- Don't remove pre-existing dead code unless asked.
-
-The test: Every changed line should trace directly to the user's request.
-
-## 4. Goal-Driven Execution
-
-**Define success criteria. Loop until verified.**
-
-Transform tasks into verifiable goals:
-- "Add validation" → "Write tests for invalid inputs, then make them pass"
-- "Fix the bug" → "Write a test that reproduces it, then make it pass"
-- "Refactor X" → "Ensure tests pass before and after"
-
-For multi-step tasks, state a brief plan:
-```
-1. [Step] → verify: [check]
-2. [Step] → verify: [check]
-3. [Step] → verify: [check]
-```
-
-Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
+## 7. Python CLI scripts
+When writing or improving a Python CLI script, read `~/.claude/ui_spec.md` and apply those patterns (Rich panels, info tables, prompts, colour/emoji conventions).

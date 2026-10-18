@@ -13,5 +13,6 @@
       "Bash(bash /tmp/*)"
     ]
   },
-  "theme": "dark-ansi"
+  "theme": "dark-ansi",
+  "model": "sonnet"
 }

@@ -6,9 +6,17 @@ Reference for consistent Rich-based terminal UIs across scripts.
 
 ## Dependencies
 
+macOS/Ubuntu Python is externally managed (PEP 668): never `pip install` globally. Per project:
+
 ```bash
-pip install rich
+python3 -m venv .venv
+.venv/bin/pip install rich
+echo rich > requirements.txt
 ```
+
+- Line 1 of the script: `#!/<abs path>/.venv/bin/python`, then `chmod +x script.py`
+- Shell alias points at the script itself, not `python script.py`
+- Tell the user the venv/shebang steps; don't assume they exist
 
 ```python
 from rich.console import Console
@@ -18,6 +26,16 @@ from rich.panel import Panel
 
 console = Console()
 ```
+
+macOS Python is externally managed (PEP 668), so never `pip install` globally. Per project:
+
+    python3 -m venv .venv
+    .venv/bin/pip install rich
+    echo rich > requirements.txt
+
+- Shebang on line 1: `#!/<abs path>/.venv/bin/python`, then `chmod +x script.py`
+- Alias points at the script itself, not at `python script.py`
+- Tell the user the venv and shebang steps; don't assume they exist
 
 ---
 
