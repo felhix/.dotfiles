@@ -35,5 +35,8 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
+export DENO_INSTALL="$HOME/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 eval "$(starship init zsh)"

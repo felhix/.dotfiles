@@ -13,5 +13,16 @@
       "Bash(bash /tmp/*)"
     ]
   },
-  "theme": "dark-ansi"
+  "extraKnownMarketplaces": {
+    "karpathy-skills": {
+      "source": {
+        "source": "github",
+        "repo": "forrestchang/andrej-karpathy-skills"
+      }
+    }
+  },
+  "theme": "dark-ansi",
+  "enabledPlugins": {
+    "andrej-karpathy-skills@karpathy-skills": true
+  }
 }
