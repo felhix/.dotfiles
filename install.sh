@@ -164,7 +164,6 @@ install_symlinks() {
   safe_symlink "$DOTFILES/claude/settings.json" "$HOME/.claude/settings.json"
   safe_symlink "$DOTFILES/claude/ui_spec.md"    "$HOME/.claude/ui_spec.md"
   safe_symlink "$DOTFILES/starship/starship.toml" "$HOME/.config/starship.toml"
-  safe_symlink "$DOTFILES/direnv/direnvrc"      "$HOME/.config/direnv/direnvrc"
 }
 
 migrate_git_identity() {

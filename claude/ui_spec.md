@@ -8,21 +8,17 @@ Reference for consistent Rich-based terminal UIs across scripts.
 
 Deps are per project, loaded automatically by direnv on `cd`. Scripts run with plain `python script.py`: no shebang, no `uv run`, no manual activate.
 
-- macOS / Ubuntu: `uv add rich` (writes `pyproject.toml` + `uv.lock`)
-- NixOS: add `ps.rich` to `python3XX.withPackages` in `shell.nix`
-- Every project has this `.envrc` (commit it; add `.direnv/` to `.gitignore`), then `direnv allow` once per machine:
+- `uv add rich` (writes `pyproject.toml` + `uv.lock`)
+- Every project has this `.envrc` (commit it), then `direnv allow` once per machine:
 
 ```bash
-if [[ -e /etc/NIXOS ]]; then
-  use nix
-else
-  watch_file pyproject.toml uv.lock .python-version
-  uv sync --frozen || log_error "uv sync failed"
-  export VIRTUAL_ENV="$PWD/.venv"
-  PATH_add .venv/bin
-fi
+watch_file pyproject.toml uv.lock .python-version
+uv sync --frozen || log_error "uv sync failed"
+export VIRTUAL_ENV="$PWD/.venv"
+PATH_add .venv/bin
 ```
 
+- Only if the project must also run on NixOS: add a `shell.nix` (deps via `python3XX.withPackages`), wrap the block above in `if [[ -e /etc/NIXOS ]]; then use nix; else … fi`, and gitignore `.direnv/`
 - Never `pip install` globally (PEP 668 / NixOS)
 - Non-interactive contexts (cron, agents, IDE tasks) don't run the direnv hook: use `direnv exec /path/to/project python script.py`
 - Tell the user which of these steps are missing; don't assume they exist

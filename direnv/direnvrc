@@ -1,4 +1,0 @@
-# nix-direnv: cached `use nix` (fast re-entry, GC root so builds aren't collected)
-for f in "$HOME/.nix-profile/share/nix-direnv/direnvrc" "$HOME/.local/state/nix/profile/share/nix-direnv/direnvrc"; do
-  [[ -f "$f" ]] && source "$f" && break
-done
