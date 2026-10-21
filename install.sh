@@ -134,6 +134,17 @@ install_linux() {
   fi
 }
 
+install_nixos() {
+  echo ""
+  echo "→ CLI tools (Home Manager)"
+  if command -v home-manager &>/dev/null; then
+    run home-manager switch --flake "$DOTFILES#felix"
+  else
+    run nix run home-manager/release-25.11 -- switch --flake "$DOTFILES#felix"
+  fi
+  success "home-manager switch done"
+}
+
 install_ohmyzsh() {
   echo ""
   echo "→ oh-my-zsh"
@@ -191,6 +202,8 @@ echo "Installing dotfiles..."
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   install_macos
+elif [[ -f /etc/NIXOS ]]; then
+  install_nixos
 else
   install_linux
 fi

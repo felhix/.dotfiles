@@ -23,4 +23,6 @@
   ];
 
   fonts.fontconfig.enable = true;
+
+  xdg.dataFile."konsole/catppuccin-mocha.colorscheme".source = ../konsole/catppuccin-mocha.colorscheme;
 }

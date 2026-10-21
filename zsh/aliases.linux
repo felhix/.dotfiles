@@ -1,5 +1,5 @@
 # Ubuntu ships bat as 'batcat' — this makes the shared 'cat=bat' alias chain work
-alias bat='batcat'
+command -v batcat &>/dev/null && alias bat='batcat'
 alias open='xdg-open'
 
 # Disable middle click (xinput device ID may vary per machine — override in ~/.zshrc.local)
