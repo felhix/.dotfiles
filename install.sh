@@ -68,7 +68,7 @@ install_linux() {
 
   # Install what's reliably available in apt
   local apt_tools=()
-  for tool in git zsh fzf bat btop; do
+  for tool in git zsh fzf bat btop direnv; do
     command -v "$tool" &>/dev/null || apt_tools+=("$tool")
   done
   if [[ ${#apt_tools[@]} -gt 0 ]]; then
@@ -104,6 +104,19 @@ install_linux() {
     fi
   else
     success "starship already present"
+  fi
+
+  # uv: not in apt, install via official script (to ~/.local/bin)
+  if ! command -v uv &>/dev/null; then
+    log "installing uv..."
+    if $DRY_RUN; then
+      echo "  [DRY] curl -LsSf https://astral.sh/uv/install.sh | sh"
+    else
+      curl -LsSf https://astral.sh/uv/install.sh | env UV_NO_MODIFY_PATH=1 sh
+      success "uv installed"
+    fi
+  else
+    success "uv already present"
   fi
 
   # gh: needs GitHub's apt repo — too invasive to auto-configure
@@ -151,6 +164,7 @@ install_symlinks() {
   safe_symlink "$DOTFILES/claude/settings.json" "$HOME/.claude/settings.json"
   safe_symlink "$DOTFILES/claude/ui_spec.md"    "$HOME/.claude/ui_spec.md"
   safe_symlink "$DOTFILES/starship/starship.toml" "$HOME/.config/starship.toml"
+  safe_symlink "$DOTFILES/direnv/direnvrc"      "$HOME/.config/direnv/direnvrc"
 }
 
 migrate_git_identity() {

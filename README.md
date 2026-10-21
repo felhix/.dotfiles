@@ -44,6 +44,8 @@ The tools below are what make the terminal actually pleasant to be in — not ju
 │   └── gitconfig
 ├── starship/
 │   └── starship.toml
+├── direnv/
+│   └── direnvrc         # per-project env on cd (uv .venv / nix-shell)
 ├── claude/
 │   └── CLAUDE.md
 ├── bin/

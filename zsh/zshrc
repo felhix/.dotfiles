@@ -40,3 +40,4 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 eval "$(starship init zsh)"
+command -v direnv &>/dev/null && eval "$(direnv hook zsh)"

@@ -6,17 +6,26 @@ Reference for consistent Rich-based terminal UIs across scripts.
 
 ## Dependencies
 
-macOS/Ubuntu Python is externally managed (PEP 668): never `pip install` globally. Per project:
+Deps are per project, loaded automatically by direnv on `cd`. Scripts run with plain `python script.py`: no shebang, no `uv run`, no manual activate.
+
+- macOS / Ubuntu: `uv add rich` (writes `pyproject.toml` + `uv.lock`)
+- NixOS: add `ps.rich` to `python3XX.withPackages` in `shell.nix`
+- Every project has this `.envrc` (commit it; add `.direnv/` to `.gitignore`), then `direnv allow` once per machine:
 
 ```bash
-python3 -m venv .venv
-.venv/bin/pip install rich
-echo rich > requirements.txt
+if [[ -e /etc/NIXOS ]]; then
+  use nix
+else
+  watch_file pyproject.toml uv.lock .python-version
+  uv sync --frozen || log_error "uv sync failed"
+  export VIRTUAL_ENV="$PWD/.venv"
+  PATH_add .venv/bin
+fi
 ```
 
-- Line 1 of the script: `#!/<abs path>/.venv/bin/python`, then `chmod +x script.py`
-- Shell alias points at the script itself, not `python script.py`
-- Tell the user the venv/shebang steps; don't assume they exist
+- Never `pip install` globally (PEP 668 / NixOS)
+- Non-interactive contexts (cron, agents, IDE tasks) don't run the direnv hook: use `direnv exec /path/to/project python script.py`
+- Tell the user which of these steps are missing; don't assume they exist
 
 ```python
 from rich.console import Console
@@ -26,16 +35,6 @@ from rich.panel import Panel
 
 console = Console()
 ```
-
-macOS Python is externally managed (PEP 668), so never `pip install` globally. Per project:
-
-    python3 -m venv .venv
-    .venv/bin/pip install rich
-    echo rich > requirements.txt
-
-- Shebang on line 1: `#!/<abs path>/.venv/bin/python`, then `chmod +x script.py`
-- Alias points at the script itself, not at `python script.py`
-- Tell the user the venv and shebang steps; don't assume they exist
 
 ---
 
@@ -221,7 +220,7 @@ try:
     from rich.console import Console
     # ...
 except ImportError:
-    print("Missing dependency: pip install rich")
+    print("Missing dependency rich: cd into the project (direnv) or `uv add rich`")
     sys.exit(1)
 ```
 
