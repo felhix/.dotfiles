@@ -19,5 +19,8 @@
     starship
     direnv
     uv
+    nerd-fonts._0xproto
   ];
+
+  fonts.fontconfig.enable = true;
 }
