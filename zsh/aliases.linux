@@ -6,5 +6,8 @@ alias open='xdg-open'
 alias xinput-list="xinput list | grep pointer"
 alias xinput-middle-off="xinput set-button-map 13 1 1"
 
+# Opens file as a temp copy in your normal VS Code; saves back as root when you close the tab
+alias sudocode='SUDO_EDITOR="code --wait" sudoedit'
+
 alias fkeys-on="echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode"
 alias fkeys-off="echo 1 | sudo tee /sys/module/hid_apple/parameters/fnmode"
